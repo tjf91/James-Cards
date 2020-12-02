@@ -20,6 +20,7 @@ module.exports={
     },
     editCard:(req,res)=>{
         const {title,img,text} = req.body
+        console.log(req.body)
         let indexToEdit = cards.findIndex(card=>card.card_id===+req.params.card_id)        
         cards[indexToEdit]={
             card_id:Number(req.params.card_id),
@@ -49,7 +50,7 @@ module.exports={
             date,
         }
         card.comments.push(comment)
-        res.status(201).send(card)
+        res.status(201).send(cards)
 
     },
     editComment:(req,res)=>{
@@ -63,7 +64,7 @@ module.exports={
             time:time||card.comments[indexCommentToEdit].time,
             date:date||card.comments[indexCommentToEdit].date,
         }
-        res.status(200).send(card)
+        res.status(200).send(cards)
         
     },
     deleteComment:(req,res)=>{
@@ -71,7 +72,7 @@ module.exports={
         const card = cards.find(card=>card.card_id===+card_id)
         const indexToDelete = card.comments.findIndex(comment=>comment.com_id===+com_id)
         card.comments.splice(indexToDelete,1)
-        res.status(200).send(card)
+        res.status(200).send(cards)
     }
 
 }

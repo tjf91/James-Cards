@@ -6,7 +6,13 @@ export default function CardDisplay (props){
         return(
             <Card
                 key={card.card_id}
+                card_id={card.card_id}
                 card={card}
+                editCard={props.editCard}
+                deleteCard={props.deleteCard}
+                addComment={props.addComment}
+                editComment={props.editComment}
+                deleteComment={props.deleteComment}
                 />
         )
     })
