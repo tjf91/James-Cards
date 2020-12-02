@@ -1,6 +1,17 @@
 const cards = require('./data/data.json')
+  //Get last 6 cards from newest first
+let lastCards=[]
+        for(let i=cards.length-6;i<cards.length;i++){
+            lastCards.unshift(cards[i])
+        }
 module.exports={
+    // Get all cards
     getCards:(req,res)=>res.status(200).send(cards),
+  //Get last 6 cards from newest first
+    getLastCards:(req,res)=>{
+        
+        res.status(200).send(lastCards)
+    },
     
     addCard:(req,res)=>{
         let card_id = cards[cards.length-1].card_id+1        
@@ -14,9 +25,9 @@ module.exports={
             comments:[]
         }
        
-        cards.unshift(card)
+        lastCards.unshift(card)
         card_id++
-        res.status(201).send(cards)
+        res.status(201).send(lastCards)
     },
     editCard:(req,res)=>{
         const {title,img,text} = req.body
@@ -29,20 +40,20 @@ module.exports={
             text:text||cards[indexToEdit].text,
             comments:cards[indexToEdit].comments,
         }        
-        res.status(200).send(cards)
+        res.status(200).send(lastCards)
        
     },
     deleteCard:(req,res)=>{
-        let indexToDelete = cards.findIndex(card=>card.card_id===+req.params.card_id)
-        cards.splice(indexToDelete,1)
-        res.status(200).send(cards)
+        let indexToDelete = lastCards.findIndex(card=>card.card_id===+req.params.card_id)
+        lastCards.splice(indexToDelete,1)
+        res.status(200).send(lastCards)
 
     },
     addComment:(req,res)=>{
        const {text,time,date}= req.body
        const card = cards.find(card=>card.card_id===+req.params.card_id)
        const com_id=Math.max(...card.comments.map(prop=>prop.com_id))+1
-       
+       console.log("comment add")
         const comment={
             com_id,
             text,
@@ -50,7 +61,7 @@ module.exports={
             date,
         }
         card.comments.push(comment)
-        res.status(201).send(cards)
+        res.status(201).send(lastCards)
 
     },
     editComment:(req,res)=>{
@@ -64,7 +75,7 @@ module.exports={
             time:time||card.comments[indexCommentToEdit].time,
             date:date||card.comments[indexCommentToEdit].date,
         }
-        res.status(200).send(cards)
+        res.status(200).send(lastCards)
         
     },
     deleteComment:(req,res)=>{
@@ -72,7 +83,7 @@ module.exports={
         const card = cards.find(card=>card.card_id===+card_id)
         const indexToDelete = card.comments.findIndex(comment=>comment.com_id===+com_id)
         card.comments.splice(indexToDelete,1)
-        res.status(200).send(cards)
+        res.status(200).send(lastCards)
     }
 
 }

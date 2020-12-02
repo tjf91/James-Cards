@@ -27,14 +27,15 @@ export default function Display (){
         .catch(e=>console.log(e))
     }
     const addComment = (card_id,comment) => {
+        
         axios
-        .post(api+`/${card_id}/comments`)
+        .post(api+`/${card_id}/comments`,comment)
         .then(res=>setCards(res.data))
         .catch(e=>console.log(e))
     }
     const editComment = (card_id,com_id,comment) =>{
         axios
-        .put(api+`/${card_id}/comments/${com_id}`)
+        .put(api+`/${card_id}/comments/${com_id}`, comment)
         .then(res=>setCards(res.data))
         .catch(e=>console.log(e))
     }

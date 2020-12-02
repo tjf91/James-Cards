@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button} from 'react-bootstrap'
+import {dateCreator,timeCreator} from '../utility/dateCreator'
 import Comment from './Comment'
 import DButton from './DButton'
 import EButton from './EButton'
@@ -7,9 +8,14 @@ import EButton from './EButton'
 
 
 export default function Card(props){
-      const [edit,setEdit] = useState(false)
-     
-
+    const [commentInput, setCommentInput] = useState({
+          text:'',
+          time:timeCreator(),
+          date:dateCreator(),
+      })
+    const [edit,setEdit] = useState(false)     
+    const [viewComs, setView ] = useState(false)
+    
     const mappedComments = props.card.comments.map(comment=>{     
         return(            
             <Comment
@@ -22,9 +28,7 @@ export default function Card(props){
                     com_id={comment.com_id} />
         )
         })
-        
-    
-             
+                    
     return (
         <div className='cards'>
         <div id='card-DEButtons' >
@@ -40,12 +44,21 @@ export default function Card(props){
         <img className='card-img' src={props.card.img} alt =''/>
         <h2 id='card-title'>{props.card.title}</h2>
         <p id='card-text'>{props.card.text}</p>
-        <Button id='comments-button' variant='info'>View Comments</Button>
-        <input className="comment-input" placeholder='valued opinion' />
-        <Button onClick={()=>setEdit(true)} id='card-button' >Reply</Button>
+        <Button onClick={()=>viewComs?setView(false):setView(true)} id='comments-button' variant='info'>View Comments</Button>        
+        <Button onClick={()=>edit?setEdit(false):setEdit(true)} id='card-button' >Reply</Button>
+        {edit&&
+        <div>
+        <input onChange={e=>setCommentInput({...commentInput,text:e.target.value,})}  className="comment-input" placeholder='valued opinion' value={commentInput.text} />
+        <Button onClick={()=>props.addComment(props.card_id,commentInput)}>Add 2 cents</Button>
+        </div>      
+        }
         
         
-        <div id='card-comments'>{mappedComments}</div>
+        <div id='card-comments'>{
+        viewComs
+        ?mappedComments
+        :null}
+        </div>
 
        </div>
         

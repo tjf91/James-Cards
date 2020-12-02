@@ -11,7 +11,7 @@
 
     const api='/api/cards'
     const apiCardId= '/api/cards/:card_id'
-    app.get(api, cC.getCards)
+    app.get(api, cC.getLastCards)
     app.post(api, cC.addCard)
     app.put(apiCardId,cC.editCard)
     app.delete(apiCardId,cC.deleteCard)

@@ -20,6 +20,10 @@ const [show, setShow] = useState(false);
         }
 
         const handleClose = () => {
+            
+            setShow(false);
+        }
+        const handleCloseSave = () => {
             props.editCard(props.card_id,card)
             setShow(false);
         }
@@ -42,7 +46,7 @@ const [show, setShow] = useState(false);
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={handleCloseSave}>
                   Save Changes
                 </Button>
               </Modal.Footer>
