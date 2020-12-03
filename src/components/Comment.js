@@ -13,7 +13,7 @@ export default function Comment (props){
         })
     const [edit, setEdit] =useState(false)
     const handleEdit = () =>{
-        setEdit(true)
+        edit?setEdit(false):setEdit(true)
     }
     const handleEditSubmit=()=>{        
         props.editComment(props.card_id,props.com_id,commentInput)
@@ -24,17 +24,18 @@ export default function Comment (props){
     return(
         <div className="comment">
             <img onClick={()=>props.deleteComment(props.card_id,props.com_id)} className='del-button' src={delBut} alt='' />
-            <img onClick={()=>handleEdit()} className='del-button' src={editBut} alt='' />
+            <img onClick={()=>handleEdit()} className='ed-button' src={editBut} alt='' />
             <div className="comment-dt">{ props.comment.time}<br/>{ props.comment.date}</div>
             {edit&&
             <div className='edit-div'>
                 <textarea className='com-edit-input' onChange={e=>setCommentInput({...commentInput,text:e.target.value})} placeholder='take backs' >{props.comment.text}</textarea>
                 <Button id="edit-button" variant='primary' onClick={()=>handleEditSubmit()}>Submit</Button>
             </div>
-                }
-            {
+                }           
+               {
             !edit&&
             props.comment.text}
+               
         </div>
     )
 }

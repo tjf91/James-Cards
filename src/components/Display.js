@@ -1,12 +1,16 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap'
 import { api, apiCardId } from '../api'
+import AddForm from './AddForm'
 import CardDisplay from './CardDisplay'
 import Sidebar from './Sidebar'
 
 
 export default function Display (){
     const [cards,setCards] = useState([])
+    const [toggleAdd, setToggleAdd] = useState(false)
+    const [toggleSearch, setSearch] = useState(false)
 
     const addCard =(card)=>{
         axios
@@ -45,19 +49,44 @@ export default function Display (){
         .then(res=>setCards(res.data))
         .catch(e=>console.log(e))
     }
-
-    useEffect(()=>{
+    const getAll = () => {
+        axios
+        .get(api+'/all')
+        .then(res=>setCards(res.data))
+        .catch(e=>console.log(e))
+    }
+    const getLast = () => {
         axios
         .get(api)
         .then(res=>setCards(res.data))
         .catch(e=>console.log(e))
-    },[])
+    }
+
+    useEffect(()=>getLast(),[])
+
+    
+
     return(
         <div className='display'>
-            <Sidebar
-                addCard={addCard}
-                
-                 />
+            <Button id='get-all' onClick={()=>getAll()} >Get All</Button>
+            <Button id='get-last' onClick={()=>getLast()} >Get Last</Button>
+            <Button id='add-new' onClick={()=>{
+                                                toggleAdd
+                                                ?setToggleAdd(false)
+                                                :setToggleAdd(true)
+                                                setSearch(false)}} >Add New</Button>
+            <Button id='search' onClick={()=>{
+                                                toggleSearch
+                                                ?setSearch(false)
+                                                :setSearch(true)
+                                                setToggleAdd(false)}} >Search</Button>
+            {toggleAdd
+            &&<AddForm
+                addCard={addCard}                
+                 />            
+        } 
+            {toggleSearch&&
+            <Sidebar />}           
             <CardDisplay
                 cards={cards}
                 editCard={editCard}
