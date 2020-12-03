@@ -59,22 +59,24 @@ module.exports={
 
     },
     addComment:(req,res)=>{
-       const {text,time,date}= req.body
+       const {text,time,date,img}= req.body
        const card = cards.find(card=>card.card_id===+req.params.card_id)
-       const com_id=Math.max(...card.comments.map(prop=>prop.com_id))+1
+       let com_id=Math.max(...card.comments.map(prop=>prop.com_id))+1
        console.log("comment add")
         const comment={
             com_id,
             text,
             time,
             date,
+            img,
         }
         card.comments.push(comment)
+        com_id++
         res.status(201).send(createLastCards(cards))
 
     },
     editComment:(req,res)=>{
-        const {text,time,date} =req.body
+        const {text,time,date,img} =req.body
         const {card_id,com_id} = req.params
         const card = cards.find(card=>card.card_id===+card_id)
         const indexCommentToEdit = card.comments.findIndex(comment=>comment.com_id===+com_id)
@@ -83,6 +85,7 @@ module.exports={
             text:text||card.comments[indexCommentToEdit].text,
             time:time||card.comments[indexCommentToEdit].time,
             date:date||card.comments[indexCommentToEdit].date,
+            img:img||card.comments[indexCommentToEdit].img,
         }
         res.status(200).send(createLastCards(cards))
         

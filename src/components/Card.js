@@ -1,21 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button} from 'react-bootstrap'
 import {dateCreator,timeCreator} from '../utility/dateCreator'
 import Comment from './Comment'
 import DButton from './DButton'
 import EButton from './EButton'
+import GiphySearch from './GiphySearch'
 
 
 
 export default function Card(props){
+    const [imgInput, setImgInput] =useState('')
     const [commentInput, setCommentInput] = useState({
           text:'',
           time:timeCreator(),
           date:dateCreator(),
+          img:'',
       })
     const [edit,setEdit] = useState(false)     
     const [viewComs, setView ] = useState(false)
     
+    useEffect(() => {
+        setCommentInput({...commentInput,img:imgInput})
+       }, [imgInput]);
+
     const mappedComments = props.card.comments.map(comment=>{     
         return(            
             <Comment
@@ -25,10 +32,12 @@ export default function Card(props){
                     editComment={props.editComment}
                     deleteComment={props.deleteComment}
                     card_id={props.card_id}
-                    com_id={comment.com_id} />
+                    com_id={comment.com_id}
+                    imgInput={imgInput}
+                    setImgInput={setImgInput}/>
         )
         })
-                    
+                   
     return (
         <div className='cards'>
         <div id='card-DEButtons' >
@@ -44,12 +53,21 @@ export default function Card(props){
         <img className='card-img' src={props.card.img} alt =''/>
         <h2 id='card-title'>{props.card.title}</h2>
         <p id='card-text'>{props.card.text}</p>
-        <Button onClick={()=>viewComs?setView(false):setView(true)} id='comments-button' variant='info'>View Comments</Button>        
-        <Button onClick={()=>edit?setEdit(false):setEdit(true)} id='card-button' >Reply</Button>
+        <Button id='view-comments' onClick={()=>viewComs?setView(false):setView(true)} id='comments-button' variant='info'>View Comments</Button>        
+        <Button id='reply-button' onClick={()=>edit?setEdit(false):setEdit(true)} id='card-button' >Reply</Button>
         {edit&&
-        <div>
-        <input onChange={e=>setCommentInput({...commentInput,text:e.target.value,})}  className="comment-input" placeholder='valued opinion' value={commentInput.text} />
-        <Button onClick={()=>props.addComment(props.card_id,commentInput)}>Add 2 cents</Button>
+        <div className='reply-box'>
+        <input onChange={e=>setCommentInput({...commentInput,text:e.target.value})}  className="comment-input" placeholder='valued opinion' value={commentInput.text} />
+        <Button id='submit-reply' onClick={()=>{
+            setCommentInput({...commentInput,img:imgInput})
+            console.log(commentInput)
+            props.addComment(props.card_id,commentInput)}}>Add 2 cents</Button>
+        <img className='gifs' src={imgInput} alt='gif' />
+        <div className='reply-gif'>
+        <GiphySearch
+        setImgInput={setImgInput} />
+        </div>
+        
         </div>      
         }
         

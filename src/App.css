@@ -80,6 +80,7 @@ header{
 .gifs{
   max-width: 80px;
   max-height: 80px;
+  grid-area: gifs;
 }
 .cards{
   margin-top: 5%;
@@ -88,8 +89,10 @@ header{
                         "info  info"
                         "button1 button2"
                         "reply-input reply-input"
-                        "comment comment"
-                        "com-edit-input com-edit-input";
+                         "reply-box reply-box" 
+                        "comment comment"                        
+                        "com-edit-input com-edit-input"
+                          ;
   max-width: 400px;
   background-color: rgb(162, 136, 166);
   border: 1px solid black;
@@ -113,15 +116,45 @@ header{
 #card-title{
   text-align: center;
   grid-area: title;
+  overflow: hidden;
+  max-height: 150px;
 }
 .card-img{   
-  max-width: 200px;
+  max-width: 300px;
   grid-area: image;
   
 
 }
 #card-text{
   grid-area: info;
+  
+}
+#view-comments{
+  
+}
+#reply-button{
+ 
+}
+.reply-gif{
+  
+}
+
+.reply-box{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: reply-box;
+  
+
+}
+#submit-reply{
+  height: 40px;
+  width: 150px;
+}
+.comment-input{
+  max-height: 50px;
+  max-width: 150px;
 }
 #card-comments{
   grid-area: comment;
@@ -149,10 +182,11 @@ header{
   overflow: hidden;
 grid-area: comment;
  display: grid;
+ flex-wrap: wrap;
  grid-template-areas: "tx tx tx tx tx date edit delete"
-                      "tx tx tx tx tx . . .";                               
+                      "tx tx tx tx tx gifs gifs gifs";                               
  border: 1px solid rgb(129, 79, 136); 
-                                       
+ grid-auto-flow: row;                                    
   
 }
 .comment-dt{
