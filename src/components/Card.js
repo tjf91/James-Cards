@@ -18,12 +18,14 @@ export default function Card(props){
       })
     const [edit,setEdit] = useState(false)     
     const [viewComs, setView ] = useState(false)
-    
+
+    //Without this comments appear without gifs. 
     useEffect(() => {
         setCommentInput({...commentInput,img:imgInput})
        }, [imgInput]);
 
-    const mappedComments = props.card.comments.map(comment=>{     
+    const mappedComments = props.card.comments.map(comment=>{    
+         
         return(            
             <Comment
                     comment={comment}
@@ -37,7 +39,7 @@ export default function Card(props){
                     setImgInput={setImgInput}/>
         )
         })
-                   
+            
     return (
         <div className='cards'>
         <div id='card-DEButtons' >
@@ -53,14 +55,15 @@ export default function Card(props){
         <img className='card-img' src={props.card.img} alt =''/>
         <h2 id='card-title'>{props.card.title}</h2>
         <p id='card-text'>{props.card.text}</p>
-        <Button id='view-comments' onClick={()=>viewComs?setView(false):setView(true)} id='comments-button' variant='info'>View Comments</Button>        
-        <Button id='reply-button' onClick={()=>edit?setEdit(false):setEdit(true)} id='card-button' >Reply</Button>
+        <Button onClick={()=>viewComs?setView(false):setView(true)} id='comments-button' variant='info'>View Comments</Button>        
+        <Button  onClick={()=>edit?setEdit(false):setEdit(true)} id='card-button' >Reply</Button>
         {edit&&
         <div className='reply-box'>
         <input onChange={e=>setCommentInput({...commentInput,text:e.target.value})}  className="comment-input" placeholder='valued opinion' value={commentInput.text} />
         <Button id='submit-reply' onClick={()=>{
-            setCommentInput({...commentInput,img:imgInput})
-            console.log(commentInput)
+            setCommentInput({...commentInput,img:imgInput})            
+            setView(true)
+            setEdit(false)
             props.addComment(props.card_id,commentInput)}}>Add 2 cents</Button>
         <img className='gifs' src={imgInput} alt='gif' />
         <div className='reply-gif'>
@@ -72,7 +75,7 @@ export default function Card(props){
         }
         
         
-        <div id='card-comments'>{
+        <div id='card-comments'  >{
         viewComs
         ?mappedComments
         :null}

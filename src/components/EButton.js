@@ -6,13 +6,13 @@ import editBut from  './imgs/pencil-190586_640.png'
 
 
 export default function EButton (props){
-const [show, setShow] = useState(false);
+        const [show, setShow] = useState(false);
 
         
         const handleShow = () => setShow(true);
 
         const [titleInput, setTitleInput]= useState('')
-        const [imgInput, setImgInput] =useState('')
+        const [imgInput, setImgInput] =useState(props.card.img)
         const [textInput, setTextInput]=useState('')
 
         const card={
@@ -39,10 +39,10 @@ const [show, setShow] = useState(false);
                 <Modal.Title>Edit your Card</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-              <input onChange={e=>setTitleInput(e.target.value)} placeholder='Card Title' value={titleInput}/>
-              <input onChange={e=>setTextInput(e.target.value)} placeholder='Card TEXT' value={textInput}/>
+              <input onChange={e=>setTitleInput(e.target.value)} placeholder='Card Title' value={props.card.title}/>
+              <textarea className="edit-textarea" onChange={e=>setTextInput(e.target.value)} placeholder='Card TEXT' >{props.card.text}</textarea>
               <input onChange={e=>setImgInput(e.target.value)} placeholder='Card IMG' value={imgInput}/>
-             
+              <img className='gifs' src={imgInput} alt='gif' />
                    
               </Modal.Body>
               <Modal.Footer>

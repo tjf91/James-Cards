@@ -44,8 +44,8 @@ export default function AddForm (props){
 
     return(
         <div  className='sidebar'>
-            <input onChange={e=>setTitleInput(e.target.value)} placeholder='Card Title' value={titleInput}/>
-            <input onChange={e=>setImgInput(e.target.value)} placeholder='Card IMG' value={imgInput} accept="https:/*"/>
+            <input className='sidebar-input' onChange={e=>setTitleInput(e.target.value)} placeholder='Card Title' value={titleInput}/>
+            <input className='sidebar-input' onChange={e=>setImgInput(e.target.value)} placeholder='Card IMG' value={imgInput} accept="https:/*"/>
             <input onChange={e=>setTextInput(e.target.value)} placeholder='Card TEXT' value={textInput}/>
             <Button onClick={()=>handleAdd()}>Submit</Button>            
              <GiphySearch

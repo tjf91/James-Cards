@@ -6,7 +6,7 @@ export default function GiphySearch (props){
     const [gifInput, setGifInput]=useState('')
     const [gifs,setGifs]= useState([])
     const giphyKey='FFC6KjDhiM88JkkhsrFX1hoiSAAMVPO0'
-    //require props to be function setGifs
+    
     const searchGifs = (input) => {
         axios
         .get(`https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=${input}&limit=${10}`)
@@ -23,7 +23,7 @@ export default function GiphySearch (props){
     return(
         <div>
             <input onChange={e=>setGifInput(e.target.value)} placeholder="search for stuff" value={gifInput}/>
-             <Button onClick={()=>searchGifs(gifInput)}>Search Gifs</Button>
+             <Button id='giphy-search' onClick={()=>searchGifs(gifInput)}>GIPHY Search</Button>
              {mappedGifs}
         </div>
         

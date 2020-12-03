@@ -1,79 +1,95 @@
 .App {
   text-align: center;
-  background-color: rgb(119, 203, 185);
+  background-color: rgb(223, 242, 216);
 }
 header{
-  background-color: rgba(2, 43, 58, 0.788);
-  color:rgb(255, 0, 53);  
+  background-color: rgba(67, 80, 88, 0.699);
+  color:rgb(255, 255, 255);  
   font-weight: 800;
-  font-family: fantasy;
+  font-family: monospace;
   position: fixed;
   top: 0;
-  height: 5vh;
+  height: 7vh;
   width: 100vw;
   z-index: 5;
-  text-shadow: 2px 1px 1px rgb(223, 12, 188);
+  text-shadow: 2px 2px 1px rgb(128, 0, 117);
   font-size: 4vh;
 }
+h1{
+  color:rgb(255, 255, 255);
+  text-shadow: 2px 2px 1px rgb(128, 0, 117);
+}
 #get-all{
-  background-color: slateblue;
+  
   position: fixed;
   top: 0;
   right: 0;
   z-index: 6;
 }
 #get-last{
-  background-color: slateblue;
+  
   position: fixed;
   top: 0px;
   right: 100px;
   z-index: 6;
 }
 #add-new{
-  background-color: slateblue;
+  
   position: fixed;
   top: 0px;
-  right: 200px;
+  left: 100px;
   z-index: 6;
 }
 #search{
-  background-color: slateblue;
+  
   position: fixed;
   top: 0px;
-  right: 310px;
-  z-index: 6;
+  left: 0;
+  z-index: 6;  
 }
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 .display{
-  background-color: rgb(119, 203, 185);
+  background-color: rgb(223, 242, 216);
   min-height: 95vh;
   display: flex;
   position: relative;
   top: 5vh;
+  left:200px;
 }
 .card-display{
  display: flex;
  flex-wrap: wrap;
- justify-content: space-around;
+ justify-content: space-evenly;
  align-items: flex-start;
  width: 90%;
 
 }
 .sidebar{
-  background-color: rgb(77, 36, 61);
+  background-color: rgb(239, 123, 69);
   min-width:200px;
   max-width: 200px;
-  height: 80vh;
+  height: 60vh;
+  border-radius: 10px;
+  box-shadow: 7px 7px 5px 5px rgba(56, 14, 14, 0.75);
+  position: fixed;
+  top:10vh;
+  left: 0;
+  z-index: 6;
   overflow-y: hidden;
   overflow-x: hidden;
 }
-.sidebar input{
+ input{
   background-color: rgb(239, 184, 255);  
+  border-radius: 5px
 }
+  .sidebar-input{
+    
+  }
 .sidebar input::placeholder{
   color:rgba(168, 30, 12, 0.945)
 }
@@ -93,12 +109,16 @@ header{
                         "comment comment"                        
                         "com-edit-input com-edit-input"
                           ;
-  max-width: 400px;
+  max-width: 402px;
+  min-height: 200px;
+  
   background-color: rgb(162, 136, 166);
   border: 1px solid black;
   border-radius: 20px 0px 20px 0px;
   box-shadow: 7px 7px 5px 5px rgba(0,0,0,0.75);
   position: relative;
+  margin-bottom: 50px;
+  float: right;
 }
 .cards:hover{
   
@@ -118,26 +138,29 @@ header{
   grid-area: title;
   overflow: hidden;
   max-height: 150px;
+  min-height: 150px;
+  max-width: 200px;
+  
 }
 .card-img{   
-  max-width: 300px;
+  min-width: 70%;
+  max-height: 200px;
   grid-area: image;
   
 
 }
 #card-text{
   grid-area: info;
+  max-height: 50px;
+  min-height: 50px;  
   
+
 }
-#view-comments{
-  
-}
-#reply-button{
- 
-}
+
 .reply-gif{
   
 }
+
 
 .reply-box{
   height: 100%;
@@ -151,6 +174,7 @@ header{
 #submit-reply{
   height: 40px;
   width: 150px;
+  background-color: rgb(216, 71, 39);
 }
 .comment-input{
   max-height: 50px;
@@ -168,12 +192,15 @@ header{
 #comments-button{
   grid-area: button1;
   height: 40px;
-  
+  width: 200px;
+   
 }
 
 #card-button{ 
   grid-area: button2;
   height: 40px;
+  width: 200px;
+  border-radius: 0 0 10px 0px;
 }
 
 
@@ -183,45 +210,57 @@ header{
 grid-area: comment;
  display: grid;
  flex-wrap: wrap;
- grid-template-areas: "tx tx tx tx tx date edit delete"
-                      "tx tx tx tx tx gifs gifs gifs";                               
+ grid-template-areas: "tx tx  tx tx  date edit "
+                      "tx tx  tx tx  gifs delete";
+                                                 
  border: 1px solid rgb(129, 79, 136); 
  grid-auto-flow: row;                                    
   
 }
 .comment-dt{
-  font-size: .5em;
+  font-size: .7em;
   grid-area: date;
   color: turquoise;
-  justify-self: end;
+  
+  
+}
+#comment-text{
+  background-color: rgb(162, 136, 166);
+  width: 250px;
 }
 .edit-div{
+  grid-area: tx;
+  width: 250px;
   display: flex;
-
+  flex-wrap: wrap;
 }
 #edit-button{
-  max-height: 40px;
-  
-  
+  max-height: 40px;  
+}
+.edit-textarea{
+  width: 300px;
+  height: 75px;
+  background-color:rgb(239, 184, 255);
 }
 .com-edit-input{  
   width: 220px;
   height: 100px;  
   border: 1px solid #888;   
   grid-area: tx;
-  position: relative;
+  justify-self: start;
   overflow: hidden;
   background-color: thistle;
   
-  
+}
+#giphy-search{
+  background-color: rgb(109, 26, 54);
 }
 .del-button{
   max-width: 25px;
   max-height: 25px;
   cursor: pointer; 
-  grid-area: delete;
-  
- 
+  grid-area: delete;  
+ align-self: start;;
 }
 .ed-button{
   max-width: 25px;
@@ -229,6 +268,7 @@ grid-area: comment;
   cursor: pointer; 
   grid-area: edit;
   justify-self: end;
+  
 }
 .ed-button:hover{
   border:2px solid red;

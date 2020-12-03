@@ -16,8 +16,8 @@ export default function Sidebar (props){
 
     return(
         <div className='sidebar'>
-            <div>Search</div>                   
-            <input onChange={e=>{                
+            <h1>Search</h1>                   
+            <input className='sidebar-input' onChange={e=>{                
                 setSearchInput(e.target.value)
                 search()}} placeholder='filter posts' />
              <Button onClick={()=>search()}>Search</Button>

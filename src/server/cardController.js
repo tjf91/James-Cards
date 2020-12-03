@@ -3,7 +3,7 @@ const cards = require('./data/data.json')
   
 let createLastCards= (lastC)=>{
     let arr=[]
-    for(let i=lastC.length-10;i<lastC.length;i++){
+    for(let i=lastC.length-9;i<lastC.length;i++){
             arr.unshift(cards[i])
         }
         return arr
