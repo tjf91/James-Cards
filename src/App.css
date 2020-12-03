@@ -71,6 +71,12 @@ header{
   overflow-y: hidden;
   overflow-x: hidden;
 }
+.sidebar input{
+  background-color: rgb(239, 184, 255);  
+}
+.sidebar input::placeholder{
+  color:rgba(168, 30, 12, 0.945)
+}
 .gifs{
   max-width: 80px;
   max-height: 80px;
@@ -121,6 +127,11 @@ header{
   grid-area: comment;
   
 }
+.comment:last-child{
+  border-radius: 0 0 18px 0;
+ 
+  
+}
 #comments-button{
   grid-area: button1;
   height: 40px;
@@ -140,9 +151,8 @@ grid-area: comment;
  display: grid;
  grid-template-areas: "tx tx tx tx tx date edit delete"
                       "tx tx tx tx tx . . .";                               
-  border: 5px solid;
-   border-image-source: linear-gradient(45deg, rgb(129, 88, 112), rgba(238, 9, 78, 0.178));
-  border-image-slice: 1;                                        
+ border: 1px solid rgb(129, 79, 136); 
+                                       
   
 }
 .comment-dt{

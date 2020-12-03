@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Button, Modal } from 'react-bootstrap';
+import GiphySearch from './GiphySearch';
 import editBut from  './imgs/pencil-190586_640.png'
 
 
@@ -13,6 +14,7 @@ const [show, setShow] = useState(false);
         const [titleInput, setTitleInput]= useState('')
         const [imgInput, setImgInput] =useState('')
         const [textInput, setTextInput]=useState('')
+
         const card={
             title:titleInput,
             img:imgInput,
@@ -38,8 +40,9 @@ const [show, setShow] = useState(false);
               </Modal.Header>
               <Modal.Body>
               <input onChange={e=>setTitleInput(e.target.value)} placeholder='Card Title' value={titleInput}/>
-              <input onChange={e=>setImgInput(e.target.value)} placeholder='Card IMG' value={imgInput}/>
               <input onChange={e=>setTextInput(e.target.value)} placeholder='Card TEXT' value={textInput}/>
+              <input onChange={e=>setImgInput(e.target.value)} placeholder='Card IMG' value={imgInput}/>
+             
                    
               </Modal.Body>
               <Modal.Footer>
@@ -49,6 +52,9 @@ const [show, setShow] = useState(false);
                 <Button variant="primary" onClick={handleCloseSave}>
                   Save Changes
                 </Button>
+                <GiphySearch 
+                imgInput={imgInput}
+                setImgInput={setImgInput}/>
               </Modal.Footer>
             </Modal>
           </>
