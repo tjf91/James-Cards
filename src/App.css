@@ -50,6 +50,7 @@ header{
 }
 .display{
   background-color: rgb(119, 203, 185);
+  min-height: 95vh;
   display: flex;
   position: relative;
   top: 5vh;
@@ -152,7 +153,7 @@ grid-area: comment;
 }
 .edit-div{
   display: flex;
-  
+
 }
 #edit-button{
   max-height: 40px;
@@ -190,4 +191,10 @@ grid-area: comment;
 }
 .del-button:hover{
  border:2px solid red;
+}
+#alert{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20vh;
 }

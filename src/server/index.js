@@ -1,6 +1,6 @@
     const express = require('express')
     const axios = require('axios')
-    const { addComment, editComment, deleteComment } = require('./cardController')
+    const { addComment, editComment, deleteComment, filter } = require('./cardController')
     const cC = require('./cardController')
     const app = express()
 
@@ -19,6 +19,7 @@
     app.post(apiCardId+'/comments',addComment)
     app.put(apiCardId+'/comments/:com_id',editComment)
     app.delete(apiCardId+'/comments/:com_id',deleteComment)
+    app.get(api+'/filter',filter)
 
     const SERVER_PORT = 5000
 

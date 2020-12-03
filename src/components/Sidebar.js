@@ -6,9 +6,9 @@ import AddForm from './AddForm';
 
 export default function Sidebar (props){
     const [searchInput,setSearchInput] = useState('')
-    const search = (input) => {
+    const search = () => {        
         axios
-        .get(api+`/filter?q=${input}`)
+        .get(api+`/filter?q=${searchInput}`)
         .then(res=>props.setCards(res.data))
         .catch(e=>console.log(e))
     }
@@ -17,8 +17,11 @@ export default function Sidebar (props){
     return(
         <div className='sidebar'>
             <div>Search</div>                   
-            <input placeholder='filter posts' />
-             <Button>Search</Button>
+            <input onChange={e=>{                
+                setSearchInput(e.target.value)
+                search()}} placeholder='filter posts' />
+             <Button onClick={()=>search()}>Search</Button>
+             
         </div>
     )
 }

@@ -16,7 +16,7 @@ export default function AddForm (props){
 
     const searchGifs = (input) => {
         axios
-        .get(`https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=${input}&limit=${5}`)
+        .get(`https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=${input}&limit=${10}`)
         .then(res=>setGifs(res.data.data.map(gif=>gif.images.original.url)))
         .catch(e=>console.log(e))
     }
@@ -29,12 +29,19 @@ export default function AddForm (props){
     
     
     useEffect(()=>{setImgInput(imgGif)},[imgGif])
-    const handleAdd=()=>{                
-        props.addCard({title:titleInput,img:imgInput,text:textInput})
-        setTitleInput('')
-        setImgInput('')
-        setTextInput('')
-        setGifInput('')
+    const handleAdd=()=>{
+        if(imgInput){
+            props.addCard({title:titleInput,img:imgInput,text:textInput})
+            setTitleInput('')
+            setImgInput('')
+            setTextInput('')
+            setGifInput('')
+        }
+        else{
+            prompt("ey")
+        }                 
+       
+        
     }
 
     return(

@@ -94,12 +94,13 @@ module.exports={
         card.comments.splice(indexToDelete,1)
         res.status(200).send(createLastCards(cards))
     },
-    filter:(req,res)=>{
-        const filterCards =()=>{
-            let arr=cards.title.includes(req.query.q)
+    filter:(req,res)=>{        
+        const filterCards=(input)=>{
+            let arr = cards.filter(card=>card.title.toLowerCase().includes(req.query.q.toLowerCase()))
+            return arr
         }
         res.status(200).send(filterCards(cards))
-    }
+    },
 
 }
 

@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Alert } from 'react-bootstrap'
 import { api, apiCardId } from '../api'
 import AddForm from './AddForm'
 import CardDisplay from './CardDisplay'
 import Sidebar from './Sidebar'
+
 
 
 export default function Display (){
@@ -16,6 +17,12 @@ export default function Display (){
         axios
         .post(api,card)
         .then(res=>setCards(res.data))
+        .then(setTimeout(()=>{
+            console.log('alert?')
+            
+        return(
+        <Alert variant="primary">Priceless knowledge shared with world</Alert>
+        )},2000))
         .catch(e=>console.log(e))
     }
     const editCard = (card_id,card) => {
@@ -35,6 +42,7 @@ export default function Display (){
         axios
         .post(api+`/${card_id}/comments`,comment)
         .then(res=>setCards(res.data))
+        
         .catch(e=>console.log(e))
     }
     const editComment = (card_id,com_id,comment) =>{
@@ -68,7 +76,9 @@ export default function Display (){
 
     return(
         <div className='display'>
+            
             <Button id='get-all' onClick={()=>getAll()} >Get All</Button>
+            
             <Button id='get-last' onClick={()=>getLast()} >Get Last</Button>
             <Button id='add-new' onClick={()=>{
                                                 toggleAdd
@@ -86,7 +96,9 @@ export default function Display (){
                  />            
         } 
             {toggleSearch&&
-            <Sidebar />}           
+            <Sidebar
+                cards={cards}
+                setCards={setCards} />}           
             <CardDisplay
                 cards={cards}
                 editCard={editCard}
