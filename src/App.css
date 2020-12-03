@@ -87,12 +87,7 @@ h1{
   background-color: rgb(239, 184, 255);  
   border-radius: 5px
 }
-  .sidebar-input{
-    
-  }
-.sidebar input::placeholder{
-  color:rgba(168, 30, 12, 0.945)
-}
+  
 .gifs{
   max-width: 80px;
   max-height: 80px;
@@ -107,8 +102,7 @@ h1{
                         "reply-input reply-input"
                          "reply-box reply-box" 
                         "comment comment"                        
-                        "com-edit-input com-edit-input"
-                          ;
+                        "com-edit-input com-edit-input";
   max-width: 402px;
   min-height: 200px;
   
@@ -220,12 +214,12 @@ grid-area: comment;
 .comment-dt{
   font-size: .7em;
   grid-area: date;
-  color: turquoise;
+  color: rgb(138, 214, 231);
   
   
 }
 #comment-text{
-  background-color: rgb(162, 136, 166);
+  background-color: rgb(163, 140, 167);
   width: 250px;
 }
 .edit-div{

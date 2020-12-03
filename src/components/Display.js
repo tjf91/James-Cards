@@ -6,35 +6,39 @@ import AddForm from './AddForm'
 import CardDisplay from './CardDisplay'
 import Sidebar from './Sidebar'
 
+import { ToastContainer, toast } from 'react-toastify';
 
 
+toast.configure()
 export default function Display (){
     const [cards,setCards] = useState([])
     const [toggleAdd, setToggleAdd] = useState(false)
     const [toggleSearch, setSearch] = useState(false)
 
+    const notify = () => {
+        console.log('toast')
+        toast("Wow so easy !")};
+
+
     const addCard =(card)=>{
         axios
         .post(api,card)
-        .then(res=>setCards(res.data))
-        .then(setTimeout(()=>{
-            console.log('alert?')
-            
-        return(
-        <Alert variant="primary">Priceless knowledge shared with world</Alert>
-        )},2000))
+        .then(res=>setCards(res.data)) 
+        .then(()=>toast('Card Added'))                 
         .catch(e=>console.log(e))
     }
     const editCard = (card_id,card) => {
         axios
         .put(api+`/${card_id}`,card)
         .then(res=>setCards(res.data))
+        .then(()=>toast('Card Edited'))
         .catch(e=>console.log(e))
     }
     const deleteCard = (card_id) => {
         axios
         .delete(api+`/${card_id}`)
         .then(res=>setCards(res.data))
+        .then(()=>toast('Card Deleted'))
         .catch(e=>console.log(e))
     }
     const addComment = (card_id,comment) => {
@@ -42,19 +46,21 @@ export default function Display (){
         axios
         .post(api+`/${card_id}/comments`,comment)
         .then(res=>setCards(res.data))
-        
+        .then(()=>toast('Comment Added'))
         .catch(e=>console.log(e))
     }
     const editComment = (card_id,com_id,comment) =>{
         axios
         .put(api+`/${card_id}/comments/${com_id}`, comment)
         .then(res=>setCards(res.data))
+        .then(()=>toast('Comment Edited'))
         .catch(e=>console.log(e))
     }
     const deleteComment = (card_id,com_id) => {
         axios
         .delete(api+`/${card_id}/comments/${com_id}`)
         .then(res=>setCards(res.data))
+        .then(()=>toast('Comment Deleted'))
         .catch(e=>console.log(e))
     }
     const getAll = () => {
