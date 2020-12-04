@@ -1,4 +1,5 @@
- function dateCreator() {
+//this whole bit was taken from the chat server. I just separated the variables to match
+function dateCreator() {
     var date = new Date();
     var time;
   

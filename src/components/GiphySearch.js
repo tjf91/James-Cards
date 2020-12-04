@@ -14,7 +14,7 @@ export default function GiphySearch (props){
         .catch(e=>console.log(e))
     }
    
-    //The onClick function sets empty string to the httpp
+    //The onClick function sets empty prop via a setState hook to the img string
     const mappedGifs = gifs.map(gif=>{
         return(                            
                <img onClick={()=>props.setImgInput(gif)} className="gifs" src={gif} alt='' />                        

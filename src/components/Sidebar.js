@@ -13,7 +13,6 @@ export default function Sidebar (props){
         .catch(e=>console.log(e))
     }
     
-
     return(
         <div className='sidebar'>
             <h1>Search</h1>                   

@@ -26,7 +26,7 @@ export default function Comment (props){
         props.editComment(props.card_id,props.com_id,commentInput)
         setEdit(false)
     }
-    
+    //make sure image state changes after it is clicked on
     useEffect(()=>{
         setCommentInput({...commentInput,img:imgInput})
     },[imgInput])

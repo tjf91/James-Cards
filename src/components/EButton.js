@@ -13,7 +13,7 @@ export default function EButton (props){
 
         const [titleInput, setTitleInput]= useState(props.card.title)
         const [imgInput, setImgInput] =useState(props.card.img)
-        const [textInput, setTextInput]=useState('')
+        const [textInput, setTextInput]=useState(props.card.text)
 
         const card={
             title:titleInput,
@@ -28,7 +28,7 @@ export default function EButton (props){
             props.editCard(props.card_id,card)
             setShow(false);
         }
-        useEffect(()=>{},[titleInput])
+       
         
       
         return (
@@ -40,7 +40,7 @@ export default function EButton (props){
               </Modal.Header>
               <Modal.Body>
               <input onChange={e=>setTitleInput(e.target.value)} placeholder='Card Title' value={titleInput}/>
-              <textarea className="edit-textarea" onChange={e=>setTextInput(e.target.value)} >{props.card.text}</textarea>
+              <textarea className="edit-textarea" onChange={e=>setTextInput(e.target.value)} >{textInput}</textarea>
               <input onChange={e=>setImgInput(e.target.value)} placeholder='Card IMG' value={imgInput}/>
               <img className='gifs' src={imgInput} alt='gif' />
                    

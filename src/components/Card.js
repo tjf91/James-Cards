@@ -57,7 +57,8 @@ export default function Card(props){
         <p id='card-text'>{props.card.text}</p>
         <Button onClick={()=>viewComs?setView(false):setView(true)} id='comments-button' variant='info'>View Comments</Button>        
         <Button  onClick={()=>edit?setEdit(false):setEdit(true)} id='card-button' >Reply</Button>
-        {edit&&
+        {
+        edit&&
         <div className='reply-box'>
         <input onChange={e=>setCommentInput({...commentInput,text:e.target.value})}  className="comment-input" placeholder='valued opinion' value={commentInput.text} />
         <Button id='submit-reply' onClick={()=>{
@@ -67,20 +68,13 @@ export default function Card(props){
             props.addComment(props.card_id,commentInput)}}>Add 2 cents</Button>
         <img className='gifs' src={imgInput} alt='gif' />
         <div className='reply-gif'>
-        <GiphySearch
-        setImgInput={setImgInput} />
-        </div>
-        
+        <GiphySearch setImgInput={setImgInput} />
+        </div>        
         </div>      
-        }
-        
-        
-        <div id='card-comments'  >{
-        viewComs
-        ?mappedComments
-        :null}
+        } 
+        <div id='card-comments'  >
+        {viewComs?mappedComments:null}
         </div>
-
        </div>
         
     )

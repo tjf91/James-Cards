@@ -9,15 +9,10 @@ export default function AddForm (props){
     const [textInput, setTextInput]=useState('')
     const [gifInput,setGifInput] = useState('')
     const [imgGif,setImgGif] = useState('')
-    const [gifs,setGifs]= useState([])
-    const giphyKey='FFC6KjDhiM88JkkhsrFX1hoiSAAMVPO0'
+    
+  
 
-    const searchGifs = (input) => {
-        axios
-        .get(`https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=${input}&limit=${10}`)
-        .then(res=>setGifs(res.data.data.map(gif=>gif.images.original.url)))
-        .catch(e=>console.log(e))
-    }
+   
     
     const mappedGifs = gifs.map(gif=>{
         return(                            

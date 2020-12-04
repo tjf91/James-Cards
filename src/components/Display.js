@@ -1,12 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Alert } from 'react-bootstrap'
-import { api, apiCardId } from '../api'
+import { Button } from 'react-bootstrap'
+import { api } from '../api'
 import AddForm from './AddForm'
 import CardDisplay from './CardDisplay'
 import Sidebar from './Sidebar'
-
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 toast.configure()
