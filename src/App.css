@@ -93,7 +93,7 @@ h1{
   max-height: 80px;
   grid-area: gifs;
 }
-.cards{
+.cards, .card-hide{
   margin-top: 5%;
   display: grid;
   grid-template-areas: "title  image"
@@ -104,8 +104,7 @@ h1{
                         "comment comment"                        
                         "com-edit-input com-edit-input";
   max-width: 402px;
-  min-height: 200px;
-  
+  min-height: 200px;  
   background-color: rgb(162, 136, 166);
   border: 1px solid black;
   border-radius: 20px 0px 20px 0px;
@@ -115,6 +114,11 @@ h1{
   float: right;  
   animation: show;
   animation-duration: 1s;  
+}
+
+.card-hide{  
+  animation: hide;
+  animation-duration: 2200ms;
 }
 
 
@@ -213,7 +217,8 @@ grid-area: comment;
                                                  
  border: 1px solid rgb(129, 79, 136); 
  grid-auto-flow: row;                                    
-  
+  animation: show;
+  animation-duration: 1s;
 }
 .comment-dt{
   font-size: .7em;

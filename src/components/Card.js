@@ -9,7 +9,8 @@ import GiphySearch from './GiphySearch'
 
 
 export default function Card(props){
-    
+    const [render,setRender] = useState(true)
+   
   
     const [imgInput, setImgInput] =useState('')
     const [commentInput, setCommentInput] = useState({
@@ -43,9 +44,12 @@ export default function Card(props){
         })
             
     return (
-        <div className='cards'>
+        <div className={render?'cards':'card-hide'}>
         <div id='card-DEButtons' >
-             <DButton                 
+            
+             <DButton 
+             render={render}
+             setRender={setRender}              
              action={props.deleteCard}
              args={props.card_id} />
              <EButton
