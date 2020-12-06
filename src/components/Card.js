@@ -9,6 +9,8 @@ import GiphySearch from './GiphySearch'
 
 
 export default function Card(props){
+    
+  
     const [imgInput, setImgInput] =useState('')
     const [commentInput, setCommentInput] = useState({
           text:'',
