@@ -9,7 +9,7 @@ export default function AddForm (props){
     const [textInput, setTextInput]=useState('')
     const [gifInput,setGifInput] = useState('')
     const [imgGif,setImgGif] = useState('')
-    
+    const[gifs,setGifs]= useState([])
   
 
    

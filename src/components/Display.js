@@ -14,10 +14,6 @@ export default function Display (){
     const [toggleAdd, setToggleAdd] = useState(false)
     const [toggleSearch, setSearch] = useState(false)
 
-    const notify = () => {
-        console.log('toast')
-        toast("Wow so easy !")};
-
 
     const addCard =(card)=>{
         axios
@@ -75,9 +71,8 @@ export default function Display (){
         .catch(e=>console.log(e))
     }
 
-    useEffect(()=>getLast(),[])
 
-    
+    useEffect(()=>getLast(),[])    
 
     return(
         <div className='display'>
